@@ -8,16 +8,16 @@
 
 ## 📑 Table of Contents
 
-1. [About The Project](#-about-the-project)
-2. [Features](#-features)
-3. [How It Works](#-how-it-works)
-4. [Project Architecture](#-project-architecture)
-5. [Screenshots](#-screenshots)
-6. [Technologies Used](#-technologies-used)
-7. [Installation](#️-installation)
-8. [Learnings](#️-learnings)
-9. [License](#-license)
-10. [Acknowledgments](#-acknowledgments)
+1. [About The Project](#about-the-project)
+2. [Features](#features)
+3. [How It Works](#how-it-works)
+4. [Project Architecture](#project-architecture)
+5. [Screenshots](#screenshots)
+6. [Technologies Used](#technologies-used)
+7. [File Structure](#file-structure)
+8. [Installation](#️installation)
+9. [Learnings](#️learnings)
+10. [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -122,7 +122,7 @@ Follow these steps to set up and run the Mapty project on your local machine:
 1. **Clone the Repository**:
    Open your terminal and run the following command to clone the repository:
    ```bash
-   git clone https://github.com/YoussefGaafar/mapty.git
+   git clone https://github.com/YoussefGaafar/Mapty.git
    cd Mapty
    ```
   
@@ -151,3 +151,7 @@ From this project, I gained hands-on experience with:
 - Inspired by [Jonas Schmedtmann's JavaScript Course](https://www.udemy.com/course/the-complete-javascript-course/).
 - Map visuals are powered by [Leaflet.js](https://leafletjs.com/).
 - Location data fetched using [OpenStreetMap](https://www.openstreetmap.org/).
+
+---
+
+🎉 **Thank you for checking out Mapty! Start mapping your workouts today!**
