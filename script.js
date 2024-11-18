@@ -25,11 +25,6 @@ class Workout {
       );
       const data = await response.json();
       const { road: street, state } = data.address;
-      console.log('street name:', street); // Street name
-      console.log('state name:', state); // State name
-      console.log('Address: ', data.address);
-      // console.log('Full Response:', data); // Full response
-      console.log(street, state);
       return [street, state];
     } catch (err) {
       throw new Error(`${err.message}`);
@@ -138,10 +133,7 @@ class App {
 
   _loadMap(position) {
     // Success Callback
-    // console.log(position); // GeolocationPosition Object
-    const { latitude } = position.coords;
-    const { longitude } = position.coords;
-
+    const { latitude, longitude } = position.coords;
     const coords = [latitude, longitude];
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
@@ -160,7 +152,7 @@ class App {
     this.#map.on('click', this._showForm.bind(this)); // Similar to addEventListener()
 
     // Rendering the Markers
-    this.#workouts.forEach(work => {
+    this.#workouts.forEach((work) => {
       this._renderWorkoutMarker(work); // We can now use it HERE !!
     });
   }
@@ -193,9 +185,8 @@ class App {
   // This function will be called when ever the user clicks on the Map
   async _newWorkout(e) {
     // Helper Function for Validation
-    const validInputs = (...inputs) =>
-      inputs.every(inp => Number.isFinite(inp));
-    const allPositives = (...inputs) => inputs.every(inp => inp > 0);
+    const validInputs = (...inputs) => inputs.every((inp) => Number.isFinite(inp));
+    const allPositives = (...inputs) => inputs.every((inp) => inp > 0);
 
     e.preventDefault();
     // Getting the data from the form
@@ -208,7 +199,7 @@ class App {
     // If Workout is running --> create a new Running()
     if (type === 'running') {
       const cadance = +inputCadence.value;
-      // Checking if the data is valid (Data Validation) by a Guard Cluase
+      // Checking if the data is valid (Data Validation) by a Guard Clause
       if (
         !validInputs(distance, duration, cadance) ||
         !allPositives(distance, duration, cadance)
@@ -321,9 +312,7 @@ class App {
     const workoutEl = e.target.closest('.workout');
     if (!workoutEl) return; // Guard Clause
 
-    const workout = this.#workouts.find(
-      work => work.id === workoutEl.dataset.id
-    ); // Finding the Workout with the specific ID
+    const workout = this.#workouts.find((work) => work.id === workoutEl.dataset.id); // Finding the Workout with the specific ID
 
     this.#map.setView(workout.coords, this.#mapZoomLevel * 1.4, {
       animate: true,
@@ -349,7 +338,7 @@ class App {
     this.#workouts = data;
 
     // Let's render those workouts
-    this.#workouts.forEach(work => {
+    this.#workouts.forEach((work) => {
       this._renderWorkout(work);
       //   this._renderWorkoutMarker(work); // We cannot use it here due to that the map is not yet rendered
     });
