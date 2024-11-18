@@ -8,7 +8,7 @@
 
 ## 📑 Table of Contents
 
-1. [About The Project](#about-the-project)
+1. [About The Project](#-📖-about-the-project)
 2. [Features](#features)
 3. [How It Works](#how-it-works)
 4. [Project Architecture](#project-architecture)
