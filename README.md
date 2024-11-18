@@ -121,8 +121,8 @@ Follow these steps to set up and run the Mapty project on your local machine:
    Open your terminal and run the following command to clone the repository:
 
    ```bash
-   git clone https://github.com/YoussefGaafar/Mapty.git
-   cd Mapty
+   git clone https://github.com/YoussefGaafar/mapty.git
+   cd mapty
    ```
 
 2. **Open the Project**: Navigate to the project directory and open the index.html file in your browser
