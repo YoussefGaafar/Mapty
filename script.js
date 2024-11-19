@@ -87,6 +87,8 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+const mapEl = document.querySelector('#map');
+
 // Helper Function
 const clearFormInputs = () => {
   inputDistance.value =
@@ -116,6 +118,8 @@ class App {
 
     // 7. Adding the 'Move to Marker on Click' Event
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+
+    mapEl.classList.add('map__loading'); // Applying the loading style
   }
 
   _getPosition() {
@@ -146,7 +150,14 @@ class App {
         zoomOffset: -1,
         maxZoom: 20,
       }
-    ).addTo(this.#map);
+    )
+      .on('loading', () => {
+        mapEl.classList.add('map__loading'); // Show loading state
+      })
+      .on('load', () => {
+        mapEl.classList.remove('map__loading'); // Remove loading state
+      })
+      .addTo(this.#map);
 
     // 2. (Displaying the Markers on the map by click) using the map variable using the leaflet library
     this.#map.on('click', this._showForm.bind(this)); // Similar to addEventListener()
@@ -189,12 +200,21 @@ class App {
     const allPositives = (...inputs) => inputs.every((inp) => inp > 0);
 
     e.preventDefault();
+
     // Getting the data from the form
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
     const { lat, lng } = this.#mapEvent.latlng; // lat and lng are the latitude and longitude where we clicked
     let workout;
+
+    // Setting the form loading spinner color
+    const spinnerColor =
+      type === 'running' ? 'var(--color-brand--2)' : 'var(--color-brand--1)';
+    form.style.setProperty('--spinner-color', spinnerColor);
+
+    // Show the loading spinner on the form
+    form.classList.add('form__loading');
 
     // If Workout is running --> create a new Running()
     if (type === 'running') {
@@ -236,6 +256,9 @@ class App {
 
     // Setting the local storage to #workouts Array
     this._setLocalStorage();
+
+    // Remove the loading spinner after processing is complete
+    form.classList.remove('form__loading');
   }
 
   _renderWorkoutMarker(workout) {
