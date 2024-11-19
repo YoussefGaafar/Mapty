@@ -25,6 +25,8 @@ class Workout {
       );
       const data = await response.json();
       const { road: street, state } = data.address;
+      console.log(street, state);
+      console.log(data.address);
       return [street, state];
     } catch (err) {
       throw new Error(`${err.message}`);
@@ -37,7 +39,9 @@ class Workout {
     const [street, state] = await this._fetchAddress();
     this.description = `${this.type[0].toUpperCase() + this.type.slice(1)} on ${
       months[this.dateWorkout.getMonth()]
-    } ${this.dateWorkout.getDate()}.<br>${street || 'Unknown'}, ${state || ''}`;
+    } ${this.dateWorkout.getDate()}.<br>${street || 'Unknown'}, ${
+      state || 'Unknown'
+    }`;
   }
 
   incrementClick() {
