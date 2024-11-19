@@ -25,8 +25,6 @@ class Workout {
       );
       const data = await response.json();
       const { road: street, state } = data.address;
-      console.log(street, state);
-      console.log(data.address);
       return [street, state];
     } catch (err) {
       throw new Error(`${err.message}`);
