@@ -37,9 +37,7 @@ class Workout {
     const [street, state] = await this._fetchAddress();
     this.description = `${this.type[0].toUpperCase() + this.type.slice(1)} on ${
       months[this.dateWorkout.getMonth()]
-    } ${this.dateWorkout.getDate()} at ${street ? street : 'Unknown'}, ${
-      state ? state : ''
-    }`;
+    } ${this.dateWorkout.getDate()}.<br>${street || 'Unknown'}, ${state || ''}`;
   }
 
   incrementClick() {
@@ -125,7 +123,7 @@ class App {
   _getPosition() {
     // 1. (Displaying the Map) Using Geolocation API & Leaflet, which is similar to Internationalization (Intl) API.
     // This getCurrentPosition takes 2 callback Functions, the first one will be called on Success with a Position Parameter, and the second one will called on Errors.
-    if (navigator.geolocation)
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this), // To avoid making the 'this' keyword in the loadMap to undefined
         function () {
@@ -133,6 +131,7 @@ class App {
           alert('You need to turn ON your location first!!');
         }
       );
+    }
   }
 
   _loadMap(position) {
@@ -282,6 +281,9 @@ class App {
   }
 
   _renderWorkout(workout) {
+    const [workoutTitle, workoutAddress] = workout.description.split(' at ');
+    console.log('WT: ', workoutTitle);
+    console.log('WA: ', workoutAddress);
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
        <h2 class="workout__title">${workout.description}</h2>
