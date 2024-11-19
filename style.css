@@ -154,7 +154,7 @@ a:visited {
 
 .form__input {
   width: 100%;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.3rem;
   font-family: inherit;
   font-size: 1.4rem;
   border: none;
@@ -388,7 +388,7 @@ a:visited {
 
   .form__input {
     font-size: 1.3rem;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.3rem;
   }
 }
 
