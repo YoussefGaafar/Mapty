@@ -108,6 +108,8 @@ class App {
     // Getting the data from local storage
     this._getLocalStorage();
 
+    this.#mapZoomLevel = window.innerWidth <= 480 ? 11 : 13; // For Mobile Support
+
     //NOTE!!: The 'this' keyword in addEventListener by default is pointing at the calling element(DOM Element), you will find an example at the end of the script
     form.addEventListener('submit', this._newWorkout.bind(this));
 
@@ -164,6 +166,11 @@ class App {
     // Rendering the Markers
     this.#workouts.forEach((work) => {
       this._renderWorkoutMarker(work); // We can now use it HERE !!
+    });
+
+    // For Mobile Support
+    window.addEventListener('resize', () => {
+      this.#map.invalidateSize();
     });
   }
 
