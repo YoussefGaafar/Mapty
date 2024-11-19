@@ -229,8 +229,11 @@ class App {
       if (
         !validInputs(distance, duration, cadance) ||
         !allPositives(distance, duration, cadance)
-      )
+      ) {
+        form.classList.remove('form__loading');
+        this._hideForm();
         return alert('Inputs have to be positive numbers!');
+      }
       //prettier-ignore
       workout = await new Running([lat, lng], distance, duration, cadance).init();
     }
@@ -242,8 +245,11 @@ class App {
       if (
         !validInputs(distance, duration, elevation) ||
         !allPositives(distance, duration) // Because the elevation might be Negative
-      )
+      ) {
+        form.classList.remove('form__loading');
+        this._hideForm();
         return alert('Inputs have to be positive numbers!');
+      }
       //prettier-ignore
       workout = await new Cycling([lat, lng], distance, duration, elevation).init();
     }
@@ -288,9 +294,6 @@ class App {
   }
 
   _renderWorkout(workout) {
-    const [workoutTitle, workoutAddress] = workout.description.split(' at ');
-    console.log('WT: ', workoutTitle);
-    console.log('WA: ', workoutAddress);
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
        <h2 class="workout__title">${workout.description}</h2>
